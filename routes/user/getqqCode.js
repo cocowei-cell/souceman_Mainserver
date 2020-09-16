@@ -21,11 +21,10 @@ module.exports = async (req, res) => {
     let { stu_email } = result;
     let codes = getRandomCode(6); //获取验证码
     let Html = getHtml(codes, stu_email); //获取HTML结构
-    // await sendEmail({
-    //   html: Html,
-    //   to: stu_email,
-    // });
-    console.log(codes)
+    await sendEmail({
+      html: Html,
+      to: stu_email,
+    });
     // 保存到数据库中
     await User.updateOne({ stu_number }, { $set: { code: codes } });
     return res.send({ msg: "邮箱已发送", code: 200 });

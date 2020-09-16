@@ -3,7 +3,7 @@
  * @Author: zzz
  * @Date: 2020-09-08 09:14:59
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-09-13 14:15:24
+ * @LastEditTime: 2020-09-15 12:13:22
  */
 const user = require("express").Router();
 
@@ -15,5 +15,7 @@ user.post('/regester',require("./user/regester"));
 user.post('/getqqcode',require("./user/getqqCode"));
 //忘记密码
 user.post('/losspass',require("./user/losspass"));
+//修改密码
+user.post('/modifypass',require("./user/modifyPass"));
 
 module.exports = user;

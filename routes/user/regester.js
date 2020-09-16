@@ -28,5 +28,6 @@ module.exports = async (req, res) => {
     return res.send({ msg: "注册成功", code: 200 });
   } catch (error) {
     console.log(error);
+    return res.send({ msg: "发生未知错误",code:500 });
   }
 };

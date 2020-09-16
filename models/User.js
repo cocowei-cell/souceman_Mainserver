@@ -1,7 +1,7 @@
 /*
  * @Author: zzz
  * @Date: 2020-09-08 02:55:49
- * @LastEditTime: 2020-09-13 17:13:34
+ * @LastEditTime: 2020-09-16 22:40:44
  * @LastEditors: Please set LastEditors
  * @Description: 用户表
  * @FilePath: \mainServe\models\User.js
@@ -35,9 +35,8 @@ const userSchema = new Schema({
     type: String,
     default: "",
     required: true,
-    unique: true,
   },
-  code:{
+  code: {
     type: String,
     default: "",
   },
@@ -99,8 +98,7 @@ const ValidateUserReg = (data) => {
 const ValidateLogin = (data) => {
   const rule = {
     stu_number: Joi.string()
-      .max(9)
-      .min(9)
+      .pattern(/^\d{9}$/)
       .required()
       .error(new Error("学号不符合规则")),
     stu_pass: Joi.string()
