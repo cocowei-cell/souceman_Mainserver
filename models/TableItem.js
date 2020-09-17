@@ -3,7 +3,7 @@
  * @Author: zzz
  * @Date: 2020-09-08 02:56:02
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-09-15 19:28:39
+ * @LastEditTime: 2020-09-17 20:03:52
  */
 const { Schema } = require("mongoose");
 const mongoose = require("mongoose");
@@ -41,7 +41,7 @@ const itemSchema = new Schema({
     //时间戳
     time: { type: Number, default: +new Date() },
   },
-  //第二审核人
+  //第二审核人 最终分数以第二审核人为准
   second: {
     //分数
     score: { type: Number, default: 0 },

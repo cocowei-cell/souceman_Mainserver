@@ -13,11 +13,6 @@ const time = new Schema({
     type: String,
     default: "",
   },
-  //是否开启本学期的审核
-  isOpen: {
-    type: Boolean,
-    default: false,
-  },
 });
 
 const Time = mongoose.model("time", time);
