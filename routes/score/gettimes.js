@@ -4,7 +4,6 @@
  * @return {type}
  */
 const { Time } = require("../../models/alongTime");
-const _ = require('lodash')
 module.exports = async (req, res) => {
   try {
     //获取所有的学期
@@ -12,5 +11,6 @@ module.exports = async (req, res) => {
     return res.send({ msg: "ok", code: 200, time: result.reverse() });
   } catch (error) {
     console.log(error);
+    return res.send({ msg: "获取失败", code: 400 });
   }
 };

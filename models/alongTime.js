@@ -13,7 +13,12 @@ const time = new Schema({
     type: String,
     default: "",
   },
-});
+  //是否开启本学期审核权限
+  isOpen: {
+    type: Boolean,
+    default: false,
+  },
+},{versionKey:false});
 
 const Time = mongoose.model("time", time);
 module.exports = {

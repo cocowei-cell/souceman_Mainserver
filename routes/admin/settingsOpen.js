@@ -4,28 +4,28 @@
  * @return {type}
  */
 const { User } = require("../../models/User");
-const { Web } = require("../../models/WebSite");
+const { Time } = require("../../models/alongTime");
 const { checkToken } = require("../../until/Token");
 module.exports = async (req, res) => {
   const token = req.headers.token;
   try {
-    let { stu_number } = await checkToken(token);
+    // let { stu_number } = await checkToken(token);
     //获取权限
-    let { auth } = req.body;
+    let { auth, time, _id,stu_number } = req.body;
     //获取用户信息
     let { role } = await User.findOne({ stu_number });
     //如果是超级管理员 执行设置站点操作
     if (role === "super") {
-      let result = await Web.findOne();
-      //如果不存在，那么就创建站点操作对象
-      if (!result) {
-        await Web.create({
+      //判断是否携带id值，如果携带，说明修改已经存在的权限
+      if (!_id) {
+        await Time.create({
+          time,
           isOpen: auth,
         });
         return res.send({ msg: "设置成功", code: 200 });
       } else {
         //如果已经设置了站点操作，那么就更新操作
-        await Web.updateOne({ $set: { isOpen: auth } });
+        await Time.updateOne({ _id }, { $set: { isOpen: auth } });
         return res.send({ msg: "设置成功", code: 200 });
       }
     } else {

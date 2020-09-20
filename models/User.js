@@ -1,7 +1,7 @@
 /*
  * @Author: zzz
  * @Date: 2020-09-08 02:55:49
- * @LastEditTime: 2020-09-16 22:40:44
+ * @LastEditTime: 2020-09-18 15:31:38
  * @LastEditors: Please set LastEditors
  * @Description: 用户表
  * @FilePath: \mainServe\models\User.js
@@ -10,49 +10,52 @@ const { Schema } = require("mongoose");
 const mongoose = require("mongoose");
 const Joi = require("joi");
 //创建集合规则
-const userSchema = new Schema({
-  //学号
-  stu_number: {
-    type: String,
-    default: "",
-    required: true,
-    unique: true,
-  },
-  //姓名
-  stu_name: {
-    type: String,
-    default: "",
-    required: true,
-  },
+const userSchema = new Schema(
+  {
+    //学号
+    stu_number: {
+      type: String,
+      default: "",
+      required: true,
+      unique: true,
+    },
+    //姓名
+    stu_name: {
+      type: String,
+      default: "",
+      required: true,
+    },
 
-  stu_class: {
-    type: String,
-    default: "",
-    required: true,
+    stu_class: {
+      type: String,
+      default: "",
+      required: true,
+    },
+    //QQ邮箱
+    stu_email: {
+      type: String,
+      default: "",
+      required: true,
+    },
+    code: {
+      type: String,
+      default: "",
+    },
+    //密码
+    stu_pass: {
+      type: String,
+      default: "",
+      required: true,
+    },
+    //角色
+    role: {
+      type: String,
+      default: "normal",
+      enum: ["normal", "admin", "super"],
+    },
   },
-  //QQ邮箱
-  stu_email: {
-    type: String,
-    default: "",
-    required: true,
-  },
-  code: {
-    type: String,
-    default: "",
-  },
-  //密码
-  stu_pass: {
-    type: String,
-    default: "",
-    required: true,
-  },
-  //角色
-  role: {
-    type: String,
-    default: "normal",
-    enum: ["normal", "admin", "super"],
-  },
-});
+  { versionKey: false }
+);
 
 const User = mongoose.model("user", userSchema); //创建用户表
 
