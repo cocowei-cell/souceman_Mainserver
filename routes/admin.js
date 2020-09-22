@@ -10,5 +10,11 @@ const admin = require("express").Router();
 
 admin.post('/settings',require('./admin/settingsOpen'));
 
+//添加条目
 
+admin.post('/additems',require('./admin/additem'));
+
+//删除条目
+
+admin.delete('/deleteitems/:_id',require('./admin/deleteitems'));
 module.exports = admin

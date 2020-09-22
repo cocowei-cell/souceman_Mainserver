@@ -3,7 +3,7 @@
  * @Author: zzz
  * @Date: 2020-09-08 09:16:51
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-09-15 12:29:29
+ * @LastEditTime: 2020-09-21 22:31:46
  */
 const { createToken } = require("../../until/Token");
 
@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
   if (error) {
     return res.send({ msg: "学号或密码格式错误", code: 400 });
   }
- 
+
   try {
     //查询学号是否存在
     let result = await User.findOne({ stu_number: body.stu_number });
@@ -23,9 +23,9 @@ module.exports = async (req, res) => {
       return res.send({ msg: "用户名或密码不正确", code: 400 });
     } else {
       //比对密码，如果正确就登录成功
-      const { stu_pass } = result;
+      const { stu_pass, _id } = result;
       if (body.stu_pass === stu_pass) {
-        let token = createToken({ stu_number: body.stu_number });
+        let token = createToken({ stu_number: body.stu_number, _id });
         let userInfo = _.pick(result, [
           "stu_number",
           "stu_name",

@@ -3,7 +3,7 @@
  * @Author: zzz
  * @Date: 2020-09-08 02:56:02
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-09-19 20:48:58
+ * @LastEditTime: 2020-09-20 21:04:40
  */
 const { Schema } = require("mongoose");
 const mongoose = require("mongoose");
@@ -64,6 +64,11 @@ const itemSchema = new Schema(
     along_time: {
       type: String,
       default: "",
+    },
+    //是否已经审核
+    is_checked: {
+      type: Boolean,
+      default: false,
     },
   },
   { versionKey: false }

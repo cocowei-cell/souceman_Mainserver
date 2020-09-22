@@ -30,5 +30,6 @@ module.exports = async (req, res) => {
     return res.send({ msg: "邮箱已发送", code: 200 });
   } catch (error) {
     console.log(error);
+    return res.send({ msg: "发送失败", code: 400 });
   }
 };
