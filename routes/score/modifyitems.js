@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
     //判断是否存在
     let resTag = await Item.findOne({ _id: item_id });
     //根据项目编号查询项目描述
-    let description = await TableItem.findOne({ item_number });
+    let { description } = await TableItem.findOne({ item_number });
     //如果不存在 就创建
     if (!resTag) {
       if (+self_score == 0 || reason.trim() === "") {
@@ -49,10 +49,12 @@ module.exports = async (req, res) => {
       });
       return res.send({ msg: "添加成功", code: 200 });
     }
+    // 分数为0 删除项目
     if (+self_score === 0) {
       await Item.deleteOne({ _id: item_id });
       return res.send({ msg: "删除成功", code: 200 });
     }
+    // 更新数据
     await Item.updateOne(
       { _id: item_id },
       { $set: { pictures, reason, self_score } }

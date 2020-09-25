@@ -3,7 +3,7 @@
  * @Author: zzz
  * @Date: 2020-09-08 03:55:43
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-09-16 22:51:04
+ * @LastEditTime: 2020-09-23 22:23:17
  */
 module.exports = async (app) => {
   //用户相关
@@ -13,5 +13,7 @@ module.exports = async (app) => {
   //分数模块
   app.use("/api/score", require("./score"));
   //管理员模块
-  app.use("/api/admin",require("./admin"))
+  app.use("/api/admin", require("./admin"));
+  // 超级管理员模块
+  app.use("/api/super", require("./super"));
 };

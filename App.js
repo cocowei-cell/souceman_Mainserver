@@ -3,7 +3,7 @@
  * @Author: zzz
  * @Date: 2020-09-08 02:40:33
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-09-22 17:11:01
+ * @LastEditTime: 2020-09-23 22:45:59
  */
 
 const express = require("express");
@@ -49,7 +49,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET,DELETE,PUT,POST");
   // 跨域携带cookie
   res.header("Access-Control-Allow-Credentials", true);
-  res.header("Server","nginx");
+  res.header("Server", "nginx");
   next();
 });
 //路由

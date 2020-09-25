@@ -14,4 +14,7 @@ score.get("/gettimes", require("./score/gettimes"));
 score.get("/getitems/:time", require("./score/getitems"));
 //修改子项目路由
 score.put("/modifyitems", require("./score/modifyitems"));
+// 获取分数
+score.get("/getscore", require("./score/getsorce"))
+
 module.exports = score;
