@@ -15,9 +15,14 @@ module.exports = async (req, res) => {
     if (role === "super") {
       //判断是否携带id值，如果未携带 创建这个学期
       if (!_id) {
-        // 权限默认为关闭状态
+        let isHas = await Time.findOne({ time });
+        if (isHas) {
+          return res.send({ msg: "本学期已经存在，请勿重复添加", code: 400 });
+        }
+        //不存在就添加
         await Time.create({
           time,
+          isOpen: auth,
         });
         return res.send({ msg: "添加成功", code: 200 });
       } else {

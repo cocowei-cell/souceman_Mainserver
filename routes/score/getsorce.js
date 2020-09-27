@@ -25,6 +25,17 @@ module.exports = async (req, res) => {
     data = {
       info: [],
     };
+    //如果未提交
+    if (result.length === 0) {
+      data.firstTotal = firstTotal;
+      data.secondTotal = secondTotal;
+      data.selfTotal = selfTotal;
+      data.is_checked = tagCheck;
+      return res.send({
+        msg: "获取成功",
+        data,
+      });
+    }
     // 计算总分
     result.forEach((v) => {
       // 如果有一个未审核，整体就未审核
@@ -45,6 +56,7 @@ module.exports = async (req, res) => {
         "item_number",
         "description",
         "along_user",
+        "_id"
       ]);
       data.info.push(temp);
     });

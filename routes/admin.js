@@ -5,6 +5,7 @@
  */
 
 const admin = require("express").Router();
-
+// 获取条目 根据班级 学期
+admin.get("/getitem", require("./admin/getitem"));
 
 module.exports = admin;
