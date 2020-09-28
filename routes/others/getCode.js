@@ -25,4 +25,13 @@ module.exports = async (req, res) => {
   req.session.captch = datas.text;
   return res.send(datas.data);
 };
+
+
+
+/* 
+    http://niubi.com   
+    
+    
+
+*/
   
