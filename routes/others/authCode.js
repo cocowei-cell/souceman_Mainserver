@@ -7,6 +7,7 @@
 module.exports = async (req, res) => {
   let { code } = req.body;
   // console.log(req.session)
+  code = code.toLowerCase();
   if (req.session.captch === code) {
     return res.send({ msg: "验证码正确", code: 200 });
   } else {

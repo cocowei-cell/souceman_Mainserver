@@ -15,17 +15,17 @@ const disputeSchema = new Schema({
   //项目的ID值
   item_id: {
     type: IDs,
-    ref: "table_items",
+    ref: "item",
   },
   //原因
   reason: {
     type: String,
     default: "",
   },
-  //最终审核人学号
+  //最终审核人id值
   check_person: {
-    type: String,
-    default: "",
+    type: IDs,
+    ref:'user'
   },
   //是否处理
   is_checked: {

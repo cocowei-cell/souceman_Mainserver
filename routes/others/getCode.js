@@ -22,7 +22,8 @@ module.exports = async (req, res) => {
   });
   //设置响应头
   res.header("Content-Type", "image/svg+xml");
-  req.session.captch = datas.text;
+  // 忽略大小写
+  req.session.captch = datas.text.toLowerCase();
   return res.send(datas.data);
 };
 

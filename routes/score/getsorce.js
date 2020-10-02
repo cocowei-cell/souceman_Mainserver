@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
     let result = await Item.find({
       along_time: time,
       along_user: _id,
-    }).populate("first second", "stu_name -_id"); //选择出名字去除_id字段
+    }).populate("first.user","stu_name").populate("second.user","stu_name"); //选择出名字去除_id字段
     // 第一审核人总分和第二审核人总分
     let firstTotal = 0,
       secondTotal = 0,
