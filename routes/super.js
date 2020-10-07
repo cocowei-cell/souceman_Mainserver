@@ -22,4 +22,18 @@ supers.put("/modifyinfo", require("./super/modifyinfo"));
 supers.get("/getoneuser",require("./super/getoneuser"))
 //获取对应的条目
 supers.get("/getitems/:page", require('./super/getitems'))
+// 添加学院
+supers.post('/addcollege',require('./super/addcollege'))
+// 获取学院
+supers.get('/getcollege', require('./super/getcollege'))
+// 添加专业
+supers.post('/addprofess',require('./super/addprofess'))
+// 获取专业
+supers.get('/getprofess/:cid',require('./super/getprofess'))
+// 修改专业信息
+supers.put('/modifyprofess',require('./super/modifyprofess'))
+// 修改专业信息
+supers.put('/modifycollege',require('./super/modifycollege'))
+// 修改审核人学期审核
+supers.post('/modifycheck',require('./super/modifycheck'))
 module.exports = supers;

@@ -3,7 +3,7 @@
  * @Author: zzz
  * @Date: 2020-09-08 02:40:33
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-09-23 22:45:59
+ * @LastEditTime: 2020-10-06 22:47:35
  */
 
 const express = require("express");
@@ -37,7 +37,9 @@ app.use((req, res, next) => {
   let refer = req.headers.referer;
   //当不是在服务器上请求时，设置为默认，去掉后当用浏览器的URL发送请求时会
   //得到refer为undefined，造成客户端返回500的错误
-  if (!refer) refer = "http://localhost:8080";
+  if(!refer) {
+    return res.send({ msg: "获取失败",code: 400})
+  }
   let url = URL.parse(refer);
   // 转换为源地址，不req.headers.referer任何参数
   let finalUrl = `${url.protocol}//${url.host}`;
@@ -49,7 +51,9 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET,DELETE,PUT,POST");
   // 跨域携带cookie
   res.header("Access-Control-Allow-Credentials", true);
-  res.header("Server", "nginx");
+  res.header("X-Powered-By","3.1.0")
+  // 设置get请求缓存 300s
+  // res.header('cache-control','max-age=300')
   next();
 });
 //路由
@@ -60,7 +64,6 @@ mongoose
   .connect(dbConnection.connect, dbConnection.options)
   .then(() => console.log("The database connection!"))
   .catch(() => console.log("The database connection failed!"));
-
 app.listen(serverListeningPort, () => {
   console.log("The server listening on port" + serverListeningPort);
 });

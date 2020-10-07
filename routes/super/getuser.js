@@ -21,7 +21,16 @@ module.exports = async (req, res) => {
     if (page <= 0) {
       page = 1;
     }
-    let result = await pages(User).sort("role").page(page).size(10).display(5).exec();
+    const type = req.query.type;
+    let result = await pages(User)
+      .find({ role: type })
+      .sort("role")
+      .populate("college")
+      .populate("profession")
+      .page(page)
+      .size(10)
+      .display(5)
+      .exec();
     return res.send({ msg: "获取成功", code: 200, result });
   } catch (error) {
     console.log(error);

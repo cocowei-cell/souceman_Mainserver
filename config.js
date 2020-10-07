@@ -1,7 +1,7 @@
 /*
  * @Author: zzz
  * @Date: 2020-09-08 02:43:04
- * @LastEditTime: 2020-09-13 13:55:44
+ * @LastEditTime: 2020-10-06 20:30:24
  * @LastEditors: Please set LastEditors
  * @Description: 配置文件
  * @FilePath: \mainServe\config.js
@@ -17,7 +17,7 @@ const dbConnection = {
 };
 
 const serverListeningPort = 3000; //服务器监听的端口号
-const URL = `http://localhost:${serverListeningPort}`;
+const URL = `182.92.120.217:${serverListeningPort}`;
 //QQ邮箱配置文件
 const emailConfig = {
   host: "smtp.qq.com", //QQ邮箱的 smtp 服务器地址

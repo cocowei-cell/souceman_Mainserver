@@ -14,9 +14,10 @@ module.exports = async (req, res) => {
     if (role === "super") {
       let { stu_number } = req.query;
       // console.log(stu_number)
-      let result = await User.findOne({ stu_number }).select(
-        "-stu_pass -code -__v"
-      );
+      let result = await User.findOne({ stu_number })
+        .populate("college")
+        .populate("profession")
+        .select("-stu_pass -code -__v");
       if (!result) {
         return res.send({ msg: "用户不存在", code: 400 });
       }

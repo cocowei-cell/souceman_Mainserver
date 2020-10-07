@@ -1,7 +1,7 @@
 /*
  * @Author: zzz
  * @Date: 2020-09-08 02:55:49
- * @LastEditTime: 2020-09-18 15:31:38
+ * @LastEditTime: 2020-10-05 17:16:47
  * @LastEditors: Please set LastEditors
  * @Description: 用户表
  * @FilePath: \mainServe\models\User.js
@@ -9,6 +9,7 @@
 const { Schema } = require("mongoose");
 const mongoose = require("mongoose");
 const Joi = require("joi");
+const IDs = mongoose.Schema.Types.ObjectId;
 //创建集合规则
 const userSchema = new Schema(
   {
@@ -25,7 +26,20 @@ const userSchema = new Schema(
       default: "",
       required: true,
     },
-
+    // 学院
+    college: {
+      type: IDs,
+      ref: "college",
+    },
+    // 专业
+    profession: {
+      type: IDs,
+      ref: "profession",
+    },
+    grade: {
+      type: String,
+      default: "",
+    },
     stu_class: {
       type: String,
       default: "",

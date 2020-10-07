@@ -6,12 +6,18 @@
 const { Item } = require("../../models/TableItem");
 const { checkToken } = require("../../until/Token");
 const { Dispute } = require("../../models/dispute");
+const { Open } = require("../../models/isopen");
 module.exports = async (req, res) => {
   try {
     const token = req.headers.token;
     let { role, _id } = await checkToken(token);
     if (role !== "admin") {
       return res.send({ msg: "非法操作", code: 400 });
+    }
+    const tag = await Open.findOne();
+    // 如果不存在该学期或者不开启审核
+    if (!tag || tag.isOpen == false) {
+      return res.send({ msg: "管理员已关闭该学期审核", code: 400 });
     }
     // 项目Id 最终分数 异议项id值
     const { item_id, final_score, error_id } = req.body;

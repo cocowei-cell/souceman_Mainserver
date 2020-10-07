@@ -1,12 +1,10 @@
 /**
- * @description: 修改用户角色信息
+ * @description: 修改是否开启学期审核
  * @param {type}
  * @return {type}
  */
-
-const { User } = require("../../models/User");
 const { checkToken } = require("../../until/Token");
-
+const { Open } = require("../../models/isopen");
 module.exports = async (req, res) => {
   try {
     const token = req.headers.token;
@@ -14,21 +12,18 @@ module.exports = async (req, res) => {
     if (role !== "super") {
       return res.send({ msg: "非法获取信息", code: 400 });
     }
-    // 获取权限
-    const { _id, stu_class, stu_email, auth, colleges } = req.body;
-    // 更新角色，班级，邮箱
-    await User.updateOne(
-      { _id },
-      {
-        $set: {
-          role: auth,
-          stu_email,
-          stu_class,
-          college: colleges[0],
-          profession: colleges[1],
-        },
-      }
-    );
+    const { auth } = req.body;
+    let tag = await Open.findOne();
+    // 如果为空
+    if (!tag) {
+      await Open.create({
+        isOpen: auth,
+      });
+    } else {
+      await Open.updateOne({
+        isOpen: auth,
+      });
+    }
     return res.send({ msg: "设置成功", code: 200 });
   } catch (error) {
     console.log(error);

@@ -16,5 +16,7 @@ admin.get("/geterror", require("./admin//geterror"));
 // 获取异议表格的数目
 admin.get("/getcount", require("./admin/getcounterror"));
 // 处理异议
-admin.put("/handledisputes",require("./admin/handledisputes"))
+admin.put("/handledisputes", require("./admin/handledisputes"));
+// 获取班级导引图
+admin.get("/getdrawer", require("./admin/getdrawer"));
 module.exports = admin;
