@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
     const type = req.query.type;
     let result = await pages(User)
       .find({ role: type })
+      .select("-stu_pass")
       .sort("role")
       .populate("college")
       .populate("profession")

@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
     const tag = await Open.findOne();
     // 如果不存在该学期或者不开启审核
     if (!tag || tag.isOpen == false) {
-      return res.send({ msg: "管理员已关闭该学期审核", code: 400 });
+      return res.send({ msg: "管理员已关闭该学期审核", code: 402 });
     }
     // 项目Id 最终分数 异议项id值
     const { item_id, final_score, error_id } = req.body;
